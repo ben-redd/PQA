@@ -1,0 +1,78 @@
+fileVersion: 1
+id: 95ce225a-c65b-4ae8-a01e-fa37f944e3ab
+name: V_REGION1_advanced
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f410b26-6bf6-47e7-85a2-91035142fffa
+          stepCounter: 95ce225a-c65b-4ae8-a01e-fa37f944e3ab
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: R_REGIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd3e8a20-edf7-4527-ab0e-b61c8bd9e3fc
+                stepCounter: d4b19b62-fbd9-473f-93ff-fced2b5d5267
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5692b2b-249e-4db7-a5bb-1399105a792f
+          stepCounter: 95ce225a-c65b-4ae8-a01e-fa37f944e3ab
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: R_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f55d55f9-9223-441a-bfd6-1f6c2fcfdbc6
+                stepCounter: d4b19b62-fbd9-473f-93ff-fced2b5d5267
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d656d55f-4fbb-4c01-adb7-8d5558f71906
+          stepCounter: 95ce225a-c65b-4ae8-a01e-fa37f944e3ab
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0e1b4ea-fda2-4411-b7cf-494b027dfec2
+                stepCounter: d4b19b62-fbd9-473f-93ff-fced2b5d5267
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DESTINATION
+            nodeName: V_REGION
+        join:
+          joinCondition: FROM {{ ref('DESTINATION', 'V_REGION') }} "V_REGION"
+        name: V_REGION1_advanced
+        noLinkRefs: []
+  name: V_REGION1_advanced
+  overrideSQL: false
+  schema: ""
+  sqlType: "26"
+  type: sql
+  version: 1
+type: Node
