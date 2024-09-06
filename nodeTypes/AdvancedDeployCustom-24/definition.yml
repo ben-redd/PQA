@@ -1,0 +1,216 @@
+fileVersion: 1
+id: "24"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: 'Advanced Deploy Custom'                      # Common Name (string, required)
+    short: 'ADC'                                     # Node prefix. A '_' delimiter will be added automatically. (string, required)
+    plural: 'Advance Deploy Customs'                          # plural name of common name (string, required)
+    tagColor: '#333333'                              # Node color. CSS colors or hex colors (string, required)
+    deployStrategy: advanced													 # Deployment strategy - see separate article for details.
+
+    config:                                          # Array of the following config items
+    - groupName: 'Core UI Elements'                  # Name of config group (string, required)
+      description: 'Core UI Elements'                # Description of group. Displayed in the GUI (string)
+      enableIf: 'true'                               # If true, display this config group, else hide this config group. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      items:                                         # This will be followed by all your config items/UI elements for the given group (array, required)
+
+                                                     ## Core UI Elements ##
+      - type: businessKeyColumns                     # Selector for business key columns
+        displayName: 'Business Key'                  # displayName for type businessKeyColumns (cannot be modified by user) 
+        attributeName: 'isBusinessKey'               # attributeName for type businessKeyColumns (cannot be modified by user) 
+        isRequired: false                            # Require input from user for this config element (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: materializationSelector                # Dropdown selector for materialization options
+        default: 'table'                             # Default selection (string)
+        options:                                     # Materialization options allowed for this node. (array of strings 'table' | 'view')
+        - 'table'  
+        - 'view'  
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: multisourceToggle  
+        displayName: 'Multi Source'                  # displayName for type multisourceToggle (cannot be modified by user) 
+        attributeName: 'node.isMultisource'          # attributeName for type multisourceToggle (cannot be modified by user) 
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: overrideSQLToggle                      # Enables GUI input for DDL SQL 
+        displayName: 'Override Create SQL'           # displayName for type overrideSQLToggle (cannot be modified by user) 
+        attributeName: 'node.override.create'        # attributeName for type overrideSQLToggle (cannot be modified by user) 
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+       
+      - type: changeTrackingColumns                  # Selector for change tracking columns
+        displayName: 'Change Tracking'               # displayName for type changeTrackingColumns (cannot be modified by user) 
+        attributeName: 'isChangeTracking'            # attributeName for type changeTrackingColumns (cannot be modified by user) 
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+    - groupName: 'User-defined UI Elements'          # Name of config group (string, required)
+      description: 'User-defined UI Elements'        # Description of group. Displayed in the GUI (string)
+      enableIf: 'true'                               # If true, display this config group, else hide this config group
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+      items:                                         # This will be followed by all your config items/UI elements for the given group (array, required)
+      
+                                                     # User-defined UI Elements
+      - type: toggleButton                           # Toggle button
+        displayName: 'My Button'                     # GUI display name (string, required) 
+        attributeName: 'button'                      # Name of element used in templates (string, required)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: dropdownSelector                       # Dropdown of options
+        displayName: 'My Dropdown Selector'          # GUI display name (string, required) 
+        attributeName: 'dropdown'                    # Name of element used in templates (string, required)
+        default: 'option 1'                          # Default selection (string)
+        options:                                     # Dropdown options (array of strings, required)
+        - 'option 1'
+        - 'option 2'
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: columnSelector                         # Transfer config element for selecting multiple columns from the mapping grid
+        displayName: 'My Multi Column Selector'      # GUI display name (string, required) 
+        attributeName: 'columnSelector'              # Name of element used in templates (string, required)
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+
+      - type: textBox                                # Generic textbox
+        displayName: 'My Textbox'                    # GUI display name (string, required) 
+        attributeName: 'textbox'                     # Name of element used in templates (string, required)
+        syntax: 'none'                               # Syntax highlighting in text box (string, defaults 'none', 'none' | 'sql')
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+      
+      - type: tabular                                # Tabular config option. Combines multiple config elements into a single table-like structure
+        displayName: 'My Tabular Config'             # GUI display name (string, required) 
+        attributeName: 'myTabularConfig'             # Name of element used in templates (string, required)
+        columns:                                     # Array of config element types
+                                                     # (array, toggleButton | dropdownSelector | columnDropdownSelector | textBox, required) 
+        - type: toggleButton                         # Toggle button
+          displayName: 'My Button'                   # GUI display name (string, required) 
+          attributeName: 'tabToggleButton'           # Name of element used in templates (string, required)
+          enableIf: 'true'                           # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+        
+        - type: dropdownSelector                     # Dropdown of options
+          displayName: 'My Dropdown Selector'        # GUI display name (string, required) 
+          attributeName: 'tabDropdown'               # Name of element used in templates (string, required)
+          default: 'option 1'                        # Default selection (string)
+          options:                                   # Dropdown options (array of strings, required)
+          - 'option 1'
+          - 'option 2'
+          isRequired: false                          # If a config item is required (boolean, defaults false)
+          enableIf: 'true'                           # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+        
+        - type: textBox                              # Generic textbox
+          displayName: 'My Textbox'                  # GUI display name (string, required) 
+          attributeName: 'tabTextbox'                # Name of element used in templates (string, required)
+          syntax: 'none'                             # Syntax highlighting in text box (string, defaults 'none', 'none' | 'sql')
+          isRequired: false                          # If a config item is required (boolean, defaults false)
+          enableIf: 'true'                           # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted booelan may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+        
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted booelan may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')                                              
+        
+    - groupName: 'Customizable Core UI Elements'     # Name of config group (string, required)
+      description: 'Customizable Core UI Elements'   # Description of group. Displayed in the GUI (string)
+      enableIf: 'true'                               # If true, display this config group, else hide this config group. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+      items:                                         # This will be followed by all your config items/UI elements for the given group (array, required)
+             
+                                                     ## Customizable Core UI Elements ##
+      - type: dropdownSelector                       # Select the insert strategy for multisource nodes. Leveraged by Coalesce default Node Types
+        displayName: 'Multisource Strategy'          # Config element name (string, required) 
+        attributeName: 'insertStrategy'              # Name of element used in templates (string, required)
+        default: 'INSERT'                            # Default selection (string)
+        options:                                     # Dropdown options (array of strings, required)
+        - 'INSERT'
+        - 'UNION'
+        - 'UNION ALL'
+
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: toggleButton                           # Enable or disable truncate before running. Leveraged by Coalesce default Stage Node Type
+        displayName: 'Truncate Before'               # GUI display name (string, required) 
+        attributeName: 'truncateBefore'              # Name of element used in templates (string, required)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+        
+      - type: toggleButton                           # Enable tests to be run. Leveraged by Coalesce default Node Types
+        displayName: 'Enable Tests'                  # GUI display name (string, required) 
+        attributeName: 'testsEnabled'                # Name of element used in templates (string, required)
+        default: true                                # Element default state (boolean)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: textBox                                # SQL to be executed before run
+        displayName: 'Pre-SQL'                       # GUI display name (string, required) 
+        attributeName: 'preSQL'                      # Name of element used in templates (string, required)
+        syntax: 'sql'                                # Syntax highlighting in text box (string, defaults 'none', 'none' | 'sql')
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+      - type: textBox                                # SQL to be executed after run
+        displayName: 'Post-SQL'                      # GUI display name (string, required) 
+        attributeName: 'postSQL'                     # Name of element used in templates (string, required)
+        syntax: 'sql'                                # Syntax highlighting in text box (string, defaults 'none', 'none' | 'sql')
+        isRequired: false                            # If a config item is required (boolean, defaults false)
+        enableIf: 'true'                             # If true, display this element, else hide this element. 
+                                                     # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                                                     # (boolean string, 'true' | 'false', defaults 'true')
+
+        
+    systemColumns:                                   # Additional columns (rows in mapping grid) to initialize the node with (array of columns objects)
+    - displayName: 'SYSTEM_COLUMN_1'                 # Column display name (string, required) 
+                                                     # '{{NODE_NAME}}' token can be used in the displayName to reference the name of the current node
+      attributeName: 'systemColumn1'                 # Name of element used in templates (string, required)
+      transform: '1'                                 # Initialized transform value of system column (string, required)
+      dataType: 'NUMBER'                             # SQL data type (string, required)
+      placement: 'beginning'                         # Determines placement of system column in relation to normal columns.  (string, 'beginning' | 'end')
+
+    mappingColumns:                                  # Adds additional columns to the mapping grid for additional metadata per node-column
+    - type: textBox                                  # Generic textbox in mapping grid
+      headerName: 'My Header'                        # GUI display name (string, required) 
+      attributeName: 'myMappingColumn'               # Name of element used in templates (string, required)
+name: Advanced Deploy Custom
+type: NodeType

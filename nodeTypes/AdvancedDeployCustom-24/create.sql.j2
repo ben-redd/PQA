@@ -1,0 +1,18 @@
+-- if desiredState is truthy and currentState is undefined
+{% if desiredState and currentState == undefined%}
+    {{ stage('CREATE NODE') }}
+        SELECT 1
+
+-- if desiredState is undefined and currentState is truthy
+{% elif currentState and desiredState == undefined%}
+	{{ stage('DELETE NODE') }}
+        SELECT 1
+
+-- if desiredState and currentState are both truthy
+{% elif currentState and desiredState %}
+    {% if currentState != desiredState %}
+        {{ stage('CHANGES DETECTED') }}
+            SELECT 1
+    {% endif %}
+
+{% endif %}
