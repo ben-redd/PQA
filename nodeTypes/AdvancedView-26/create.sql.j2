@@ -1,0 +1,60 @@
+{% if currentState is defined and desiredState is not defined %}
+{{ stage('DROP View', true, "sql", "drop") }}
+   DROP VIEW {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+{% endif %}
+
+{% if currentState is not defined and desiredState is defined %}
+   {{ stage('Create View', true, "sql", "create") }}
+   CREATE OR REPLACE VIEW {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+   (
+       {% for col in desiredState.columns %}
+           "{{ col.name }}"
+           {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+           {%- if not loop.last -%}, {% endif %}
+       {% endfor %}
+   )
+   {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description | escape }}'{% endif %}
+   AS
+   {% for source in desiredState.sources %}
+       SELECT {% if desiredState.config.selectDistinct %} DISTINCT {% endif %}
+       {% for col in source.columns %}
+           {{ get_source_transform(col) }} AS "{{ col.name }}"
+           {%- if not loop.last -%}, {% endif %}
+       {% endfor %}
+       {{ source.join }}
+       {% if not loop.last %}
+           {% if desiredState.config.insertStrategy in ['UNION', 'UNION ALL'] %}
+               {{ desiredState.config.insertStrategy }}
+           {% else %}
+               UNION
+           {% endif %}
+       {% endif %}
+   {% endfor %}
+{% elif currentState is defined and desiredState is defined %}
+   {{ stage('Alter View', true, "sql", "create") }}
+   CREATE OR REPLACE VIEW {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+   (
+       {% for col in desiredState.columns %}
+           "{{ col.name }}"
+           {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+           {%- if not loop.last -%}, {% endif %}
+       {% endfor %}
+   )
+   {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description | escape }}'{% endif %}
+   AS
+   {% for source in desiredState.sources %}
+       SELECT {% if desiredState.config.selectDistinct %} DISTINCT {% endif %}
+       {% for col in source.columns %}
+           {{ get_source_transform(col) }} AS "{{ col.name }}"
+           {%- if not loop.last -%}, {% endif %}
+       {% endfor %}
+       {{ source.join }}
+       {% if not loop.last %}
+           {% if desiredState.config.insertStrategy in ['UNION', 'UNION ALL'] %}
+               {{ desiredState.config.insertStrategy }}
+           {% else %}
+               UNION
+           {% endif %}
+       {% endif %}
+   {% endfor %}
+{% endif %}
