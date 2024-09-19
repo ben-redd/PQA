@@ -148,6 +148,7 @@ operation:
     sourceMapping:
       - aliases:
           PART: f52e4391-36e9-446a-97f8-df9e2ccc328e
+          STG_PART1: f0706ea7-4946-48b4-a0b1-7722772240e3
         customSQL:
           customSQL: ""
         dependencies:
@@ -156,9 +157,11 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'PART') }} "PART"
-            inner join {{ ref_no_link('DESTINATIN', 'STG_PART1') }} "STG_PART1"
+            inner join {{ ref_no_link('DESTINATION', 'STG_PART1') }} "STG_PART1"
         name: STG_PART
-        noLinkRefs: []
+        noLinkRefs:
+          - locationName: DESTINATION
+            nodeName: STG_PART1
   name: STG_PART
   overrideSQL: false
   schema: ""
