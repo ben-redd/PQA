@@ -1,3 +1,1 @@
 # Welcome from Coalesce!
-
-# EDIT
