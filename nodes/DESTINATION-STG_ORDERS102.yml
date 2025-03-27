@@ -1,0 +1,168 @@
+fileVersion: 1
+id: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+name: STG_ORDERS102
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    Orders are not present for all customers. In fact, one-third of the customers do not have any order in
+    the database. The orders are assigned at random to two-thirds of the customers (see Clause 4: ). The purpose of
+    this is to exercise the capabilities of the DBMS to handle "dead data" when joining two or more tables.
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1e3607e-e7ca-4df8-92cb-23735a9e2eca
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: NUMBER(38,0)
+        description: SF*1,500,000 are sparsely populated
+        name: O_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a16e9fa4-e1f8-4733-8a41-7e78f566568b
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 873a3c3e-0f57-41c9-b10a-922e053e3ca8
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Foreign Key to C_CUSTKEY
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05baf11d-8aa7-40cd-8866-270dda51587d
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3865ecd7-6177-452c-b218-2f2fa6dd2c3e
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: O_ORDERSTATUS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96b705df-765a-47d7-bee6-69f6d61a6bed
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87f2a0cf-a107-47c7-a99c-d96c1b91ddb6
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: O_TOTALPRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44b6c972-56d0-40a3-b450-c77ca6cda8a7
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d1c39aa-3aa1-40e8-bfcd-da9f5f682bc2
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: DATE
+        description: ""
+        name: O_ORDERDATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75c4c743-a940-4cf1-bae0-c89de6cce7a0
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52611a8a-fe08-4646-91eb-906cbd360054
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        name: O_ORDERPRIORITY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8f70990-25c8-41b9-8308-69b4d371ed65
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa840957-87f6-483b-9a61-0e6e5213cf4c
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        name: O_CLERK
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd01bce2-b533-4c67-976e-90d0dee82505
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 712f8e15-f162-493b-8523-78e461805051
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: O_SHIPPRIORITY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79ae7fba-74b1-4990-b96d-76c3a284b579
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cacd220b-8c89-45be-8761-51d384b3fd02
+          stepCounter: 1e7a19b1-02ac-4d4f-bdb5-1a8b8604f682
+        config: {}
+        dataType: VARCHAR(79)
+        description: ""
+        name: O_COMMENT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 022d31d6-1fc5-46cd-826f-4702d23a0df9
+                stepCounter: 8eabb919-5b33-4cac-842e-bc46a73b7f04
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DESTINATION
+            nodeName: STG_ORDERS52
+        join:
+          joinCondition: FROM {{ ref('DESTINATION', 'STG_ORDERS52') }} "STG_ORDERS52"
+        name: STG_ORDERS102
+        noLinkRefs: []
+  name: STG_ORDERS102
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
