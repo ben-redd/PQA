@@ -30,12 +30,7 @@ operation:
           - columnReferences:
               - columnCounter: 97b78a61-5133-4870-9289-c37be6e60104
                 stepCounter: dce437c2-99e0-4e1c-9cee-c6a79c3c87fe
-            transform: |-
-              FROM {{ ref('DESTINATION', 'STG_NATION') }} "STG_NATION"
-              INNER JOIN {{ ref('DESTINATION', 'STG_REGION') }} "STG_REGION"
-              ON "STG_NATION"."N_COMMENT" = "STG_REGION"."R_COMMENT"
-              INNER JOIN {{ ref('DESTINATION', 'STG_ORDERS') }} "STG_ORDERS"
-              ON "STG_ORDERS"."O_COMMENT" = "STG_NATION"."N_COMMENT"
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: e4674f54-9d97-464f-93f7-fd90afc166f0
@@ -264,11 +259,11 @@ operation:
             nodeName: STG_REGION
         join:
           joinCondition: |-
-            FROM {{ ref('DESTINATION', 'STG_NATION') }} "STG_NATION"
-            INNER JOIN {{ ref('DESTINATION', 'STG_REGION') }} "STG_REGION"
-            ON "STG_NATION"."N_COMMENT" = "STG_REGION"."R_COMMENT"
+            FROM {{ ref('DESTINATION', 'STG_REGION') }} "STG_REGION"
             INNER JOIN {{ ref('DESTINATION', 'STG_ORDERS') }} "STG_ORDERS"
-            ON "STG_ORDERS"."O_COMMENT" = "STG_NATION"."N_COMMENT"
+            ON "STG_REGION"."R_COMMENT" = "STG_ORDERS"."O_COMMENT"
+            INNER JOIN {{ ref('DESTINATION', 'STG_NATION') }} "STG_NATION"
+            ON "STG_REGION"."R_COMMENT" = "STG_NATION"."N_COMMENT"
         name: STG_REGION_ORDERS_NATION
         noLinkRefs: []
   name: STG_REGION_ORDERS_NATION
