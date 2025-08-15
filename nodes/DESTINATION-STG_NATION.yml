@@ -78,7 +78,16 @@ operation:
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: ""
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('DESTINATION', 'STG_NATION')}} AS (
+            		SELECT 
+             "N_NATIONKEY" AS "N_NATIONKEY",
+             "N_NAME" AS "N_NAME",
+             "N_REGIONKEY" AS "N_REGIONKEY",
+             "N_COMMENT" AS "N_COMMENT"
+             FROM {{ ref('SOURCE', 'NATION') }}
+            	)
         dependencies:
           - locationName: SOURCE
             nodeName: NATION
@@ -87,7 +96,7 @@ operation:
         name: STG_NATION
         noLinkRefs: []
   name: STG_NATION
-  overrideSQL: false
+  overrideSQL: true
   schema: ""
   sqlType: Stage
   type: sql
