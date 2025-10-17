@@ -4,8 +4,8 @@ name: STG_CUSTOMER7
 operation:
   config:
     insertStrategy: INSERT
-    postSQL: ""
-    preSQL: ""
+    postSQL: SELECT * FROM {{ ref_no_link('SOURCE', 'SUPPLIER') }}
+    preSQL: SELECT * FROM {{ ref_no_link('SOURCE', 'CUSTOMER') }}
     testsEnabled: true
     truncateBefore: true
   database: ""
