@@ -1,0 +1,107 @@
+fileVersion: 1
+id: c815eedd-90ac-438e-a9e3-16a503bc2258
+name: VIEW_DEPENDENCIES_B
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aaadd095-d7d5-4f69-bc01-53d314b93a65
+          stepCounter: c815eedd-90ac-438e-a9e3-16a503bc2258
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Foreign Key to P_PARTKEY
+        name: PS_PARTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b0f3124-291e-4d19-951c-a529e7667a2a
+                stepCounter: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2654badf-a561-4f57-9d72-1175b3f0009e
+          stepCounter: c815eedd-90ac-438e-a9e3-16a503bc2258
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Foreign Key to S_SUPPKEY
+        name: PS_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 26d2e402-0d6f-42b0-8036-5f1836c388ca
+                stepCounter: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbcd6832-d8d3-4252-b0d2-b88fe57743e2
+          stepCounter: c815eedd-90ac-438e-a9e3-16a503bc2258
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_AVAILQTY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6f5a76d-e5e0-4c1d-8aba-0576c305b10d
+                stepCounter: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 475abb05-f6d8-4da3-a511-dd07f6a6b1a4
+          stepCounter: c815eedd-90ac-438e-a9e3-16a503bc2258
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 14036e6f-4a47-4242-a6cb-ad673d40f748
+                stepCounter: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86d5b8ec-3406-4c87-9d6e-f08be8f7ef2a
+          stepCounter: c815eedd-90ac-438e-a9e3-16a503bc2258
+        config: {}
+        dataType: VARCHAR(199)
+        description: ""
+        name: PS_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6b8e7b8-3a8b-45e8-9f30-1ed365e090d6
+                stepCounter: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VIEW_DEPENDENCIES_A: 85030fa0-c0e8-4162-a01b-2c25a9c9e6ad
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DESTINATION
+            nodeName: VIEW_DEPENDENCIES_A
+        join:
+          joinCondition: FROM {{ ref('DESTINATION', 'VIEW_DEPENDENCIES_A') }} "VIEW_DEPENDENCIES_A"
+        name: VIEW_DEPENDENCIES_B
+        noLinkRefs: []
+  name: VIEW_DEPENDENCIES_B
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
