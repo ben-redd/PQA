@@ -1,11 +1,11 @@
 fileVersion: 1
 id: 892279b6-5279-4f63-8678-82b728c9e62a
-name: STG_NATION_USES_STORED_PROCEDURE
+name: CALL_STORED_PROCEDURE
 operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
-    preSQL: call {{ref('DESTINATION', 'SQL_NODE_STORED_PROCEDURE_ARRAY')}}('hello', 'world')
+    preSQL: call {{ref('DESTINATION', 'STORED_PROCEDURE_ARRAY')}}('hello', 'world')
     testsEnabled: true
     truncateBefore: true
   database: ""
@@ -83,9 +83,9 @@ operation:
             nodeName: NATION
         join:
           joinCondition: FROM {{ ref('SOURCE', 'NATION') }} "NATION"
-        name: STG_NATION_USES_STORED_PROCEDURE
+        name: CALL_STORED_PROCEDURE
         noLinkRefs: []
-  name: STG_NATION_USES_STORED_PROCEDURE
+  name: CALL_STORED_PROCEDURE
   overrideSQL: false
   schema: ""
   sqlType: Stage
