@@ -1,0 +1,75 @@
+fileVersion: 1
+id: d0509856-d7cb-491b-9b59-636583def457
+name: SQL_NODE_STORED_PROCEDURE_ARRAY
+operation:
+  config:
+    SQL1: |-
+      CREATE OR REPLACE PROCEDURE {{node_name()}}("MESSAGE1" STRING, "MESSAGE2" STRING)
+          RETURNS ARRAY
+          LANGUAGE JAVASCRIPT
+          STRICT
+          EXECUTE AS OWNER
+          AS
+          $$
+          return [[MESSAGE1],[MESSAGE2]];
+          $$
+          ;
+  database: ""
+  deployEnabled: true
+  description: test
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8fcde567-8b40-45a7-a0e8-25c1fa231f57
+          stepCounter: d0509856-d7cb-491b-9b59-636583def457
+        config: {}
+        dataType: NUMBER IDENTITY
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: SQL_SEQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3024dcd-877b-48a5-800b-ce037932181e
+          stepCounter: d0509856-d7cb-491b-9b59-636583def457
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: SQL_NODE_STORED_PROCEDURE_ARRAY
+        noLinkRefs: []
+  name: SQL_NODE_STORED_PROCEDURE_ARRAY
+  overrideSQL: false
+  schema: ""
+  sqlType: ee87a29a-bfad-4402-b581-42ff3307de6f
+  type: sql
+  version: 1
+type: Node
