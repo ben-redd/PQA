@@ -25,7 +25,7 @@ operation:
           columnCounter: 9362e633-5569-4633-9d49-011550eb911d
           stepCounter: 9b83c7a1-9726-455e-be93-3f3dcb23eade
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: long
         description: SF*1,500,000 are sparsely populated
         name: O_ORDERKEY
         nullable: true
@@ -33,7 +33,7 @@ operation:
           - columnReferences:
               - columnCounter: 511d674c-278e-4ecd-926b-1a6262ce8db5
                 stepCounter: f780edf0-3363-4fa4-8d58-fba88058e9d5
-            transform: ""
+            transform: "!invalid"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: cbce7051-4af7-49d5-b7b2-29c9a34d8904
@@ -149,7 +149,8 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_ORDERS4: f780edf0-3363-4fa4-8d58-fba88058e9d5
         dependencies:
           - locationName: DESTINATION
             nodeName: STG_ORDERS4
