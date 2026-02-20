@@ -1,6 +1,6 @@
 fileVersion: 1
-id: c280dafd-ea44-466b-9006-7e51cf14c828
-name: V_SCOTT_B
+id: ac46e181-6e92-488d-821a-d59896139a15
+name: V_SCOTT_A
 operation:
   config:
     insertStrategy: UNION
@@ -16,8 +16,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 87f190ab-ae4e-432e-a753-2ffa8bfb3712
-          stepCounter: c280dafd-ea44-466b-9006-7e51cf14c828
+          columnCounter: 53326309-87c7-4204-8614-e5ce7c64cdec
+          stepCounter: ac46e181-6e92-488d-821a-d59896139a15
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -30,8 +30,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 459528ae-bfa0-4330-952f-05d94090a569
-          stepCounter: c280dafd-ea44-466b-9006-7e51cf14c828
+          columnCounter: effc7e28-ce61-44e8-a487-88f6c7d51958
+          stepCounter: ac46e181-6e92-488d-821a-d59896139a15
         config: {}
         dataType: VARCHAR(25)
         description: ""
@@ -44,8 +44,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 571ba342-6cb9-4c36-a992-c488ccde359a
-          stepCounter: c280dafd-ea44-466b-9006-7e51cf14c828
+          columnCounter: bd7b7bd6-83f9-439c-b33b-372c7cbb875e
+          stepCounter: ac46e181-6e92-488d-821a-d59896139a15
         config: {}
         dataType: VARCHAR(152)
         description: ""
@@ -67,20 +67,20 @@ operation:
             	CREATE OR REPLACE VIEW {{ ref('DESTINATION', 'V_SCOTT_A')}} AS (
             		SELECT 
             		!invalid SQL that will fail
-            		-- What's going on here
+            		--what am I doing right now !!!
              "R_REGIONKEY" AS "R_REGIONKEY",
              "R_NAME" AS "R_NAME",
              "R_COMMENT" AS "R_COMMENT"
-             FROM {{ ref('DESTINATION', 'SCOTT_A') }}
+             FROM {{ ref('NEW_LOCATION', 'SCOTT_A') }}
             	)
         dependencies:
-          - locationName: DESTINATION
+          - locationName: NEW_LOCATION
             nodeName: SCOTT_A
         join:
-          joinCondition: FROM {{ ref('DESTINATION', 'SCOTT_A') }} "SCOTT_A"
-        name: V_SCOTT_B
+          joinCondition: FROM {{ ref('NEW_LOCATION', 'SCOTT_A') }} "SCOTT_A"
+        name: V_SCOTT_A
         noLinkRefs: []
-  name: V_SCOTT_B
+  name: V_SCOTT_A
   overrideSQL: true
   schema: ""
   sqlType: View
