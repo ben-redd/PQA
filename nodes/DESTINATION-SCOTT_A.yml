@@ -1,0 +1,86 @@
+fileVersion: 1
+id: 3ba6307b-db45-4715-b583-7915c99ac354
+name: SCOTT_A
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4804b1d5-d7ed-45d4-9119-73e750195129
+          stepCounter: 3ba6307b-db45-4715-b583-7915c99ac354
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: R_REGIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 34830014-b719-4099-a42d-81dee3e55df2
+                stepCounter: a9c68001-84b7-4c4a-8824-8aaf5d48d141
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27fed2d8-8c0b-4747-885d-7b14d1eb4b42
+          stepCounter: 3ba6307b-db45-4715-b583-7915c99ac354
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: R_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 592a812c-6ab6-4a11-accc-0708aeee62e4
+                stepCounter: a9c68001-84b7-4c4a-8824-8aaf5d48d141
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5927a837-5073-4930-bd1c-68e336da7ff5
+          stepCounter: 3ba6307b-db45-4715-b583-7915c99ac354
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4ecc75e-337c-42d6-9c1d-f789700a4bd0
+                stepCounter: a9c68001-84b7-4c4a-8824-8aaf5d48d141
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          REGION: a9c68001-84b7-4c4a-8824-8aaf5d48d141
+        customSQL:
+          customSQL: |-
+            	{% if currentState != undefined %}
+                {{ stage('ALTER ADV Stage Table') }}
+                -- list of storage locations:
+                -- current: {% for loc in currentState.storageLocations %}{{ DESTINATION }}{% if not loop.last %}, {% endif %}{% endfor %}
+                -- desired: {% for loc in desiredState.storageLocations %}{{ NEW_LOCATION }}{% if not loop.last %}, {% endif %}{% endfor %}
+                select 1 = 0
+              {% endif %}
+        dependencies:
+          - locationName: SOURCE
+            nodeName: REGION
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'REGION') }} "REGION"
+        name: SCOTT_A
+        noLinkRefs: []
+  name: SCOTT_A
+  overrideSQL: true
+  schema: ""
+  sqlType: "26"
+  type: sql
+  version: 1
+type: Node
