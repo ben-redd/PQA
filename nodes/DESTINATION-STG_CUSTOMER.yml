@@ -5,7 +5,9 @@ operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
-    preSQL: ""
+    preSQL: |-
+      SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }} "CUSTOMER"
+      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameter.market_segment }}'
     testsEnabled: true
     truncateBefore: true
   database: ""
@@ -145,7 +147,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'CUSTOMER') }} "CUSTOMER"
-            WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.VAR }}'
+            WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segment }}'
         name: STG_CUSTOMER
         noLinkRefs: []
   name: STG_CUSTOMER
