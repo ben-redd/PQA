@@ -4,7 +4,10 @@ name: STG_CUSTOMER1
 operation:
   config:
     insertStrategy: INSERT
-    postSQL: ""
+    postSQL: |-
+      SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }}
+      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segments }}'
+      LIMIT {{ parameters.limit_values[0] }}
     preSQL: |-
       SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }}
       WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segments }}'
