@@ -4,14 +4,11 @@ name: STG_CUSTOMER1
 operation:
   config:
     insertStrategy: INSERT
-    postSQL: |-
-      SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }}
-      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segments }}'
-      LIMIT {{ parameters.limit_values[0] }}
+    postSQL: ""
     preSQL: |-
       SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }}
-      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segments }}'
-      LIMIT {{ parameters.limit_values[0] }}
+      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segment }}'
+      LIMIT {{ parameters.limit_value[0] }}
     testsEnabled: true
     truncateBefore: true
   database: ""
