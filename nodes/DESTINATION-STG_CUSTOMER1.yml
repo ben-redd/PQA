@@ -5,7 +5,10 @@ operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
-    preSQL: ""
+    preSQL: |-
+      SELECT * FROM {{ ref('SOURCE', 'CUSTOMER') }}
+      WHERE "CUSTOMER"."C_MKTSEGMENT" = '{{ parameters.market_segment }}'
+      LIMIT {{ parameters.limit_value[0] }}
     testsEnabled: true
     truncateBefore: true
   database: ""
