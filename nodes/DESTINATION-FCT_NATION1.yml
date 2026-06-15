@@ -1,0 +1,142 @@
+fileVersion: 1
+id: 383ab5a5-e020-4cdf-81a7-5ace46320588
+name: FCT_NATION1
+operation:
+  config:
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DESTINATION
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca3ea808-62c9-472a-9161-3a0e25999b5c
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: N_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ce887e1-40c4-4dc4-946c-bf79ccc38262
+                stepCounter: a14ab144-b3a3-4156-b7f2-79c6556f298c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b888a90a-6c0b-4ed8-89a4-3530807fafd9
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: N_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdcfaa93-c6ab-44d1-840a-26bcdc5b1f35
+                stepCounter: a14ab144-b3a3-4156-b7f2-79c6556f298c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b4b3ed27-9145-430a-8d4e-b70d4db25f9b
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: N_REGIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f28f8419-ef97-477e-a655-f0309b5b59c2
+                stepCounter: a14ab144-b3a3-4156-b7f2-79c6556f298c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e18d7449-2959-41ba-802b-3c6a9600f21a
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27d58069-67d3-47db-b318-cfb42806d266
+                stepCounter: a14ab144-b3a3-4156-b7f2-79c6556f298c
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65bd69a8-13fb-4d25-a570-05b8b9ab36ae
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1ef6ff8-f694-466b-847d-0d99491f0e1e
+          stepCounter: 383ab5a5-e020-4cdf-81a7-5ace46320588
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          NATION: a14ab144-b3a3-4156-b7f2-79c6556f298c
+        dependencies:
+          - locationName: SOURCE
+            nodeName: NATION
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'NATION') }} "NATION"
+        name: FCT_NATION1
+        noLinkRefs: []
+  name: FCT_NATION1
+  overrideSQL: false
+  schema: ""
+  sqlType: base-node-types-advanced-deploy:::389
+  type: sql
+  version: 1
+type: Node
